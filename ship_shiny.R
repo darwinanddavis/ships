@@ -21,7 +21,7 @@ require(lubridate)
 require(metathis)
 
 # trunc data and calc distance
-# ships <- "https://github.com/darwinanddavis/ships/blob/gh-pages/data/ships_df.Rdata?raw=true" %>% url %>% readRDS
+# ships <- "https://github.com/darwinanddavis/ships/blob/master/data/ships_df.Rdata?raw=true" %>% url %>% readRDS
 vessel_type <- ships %>% pull(SHIP_TYPE) %>% unique
 vessel_name <- ships %>% pull(SHIPNAME) %>% unique
 
