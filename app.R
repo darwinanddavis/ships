@@ -20,8 +20,10 @@ require(purrr)
 require(lubridate)
 require(metathis)
 
-# trunc data and calc distance
-# ships <- "https://github.com/darwinanddavis/ships/blob/master/data/ships_df.Rdata?raw=true" %>% url %>% readRDS
+# here::here() %>% runApp()
+
+# get data
+ships <- "https://github.com/darwinanddavis/ships/raw/master/data/ships_df.Rda" %>% url() %>% readRDS()
 vessel_type <- ships %>% pull(SHIP_TYPE) %>% unique
 vessel_name <- ships %>% pull(SHIPNAME) %>% unique
 
@@ -30,7 +32,7 @@ ui <- semanticPage(
   div(class = "ui raised segment", 
       theme = shinytheme(theme = "cyborg"),
       tags$style(type = "text/css", "html, body {width:100%;height:100%;background-color:black;}"),
-      titlePanel(tags$h1(span("Analysing shipping vessel locations"),span(style="color:#FF385C;","Appsilon Data"),.noWS="outside")) # title
+      titlePanel(tags$h1(span("Analysing shipping vessel locations | "),span(style="color:#0099F9;","Appsilon Data"),.noWS="outside")) # title
   ),
   # user input  -------------------------------------------------------------
   div(class = "ui raised segment",
@@ -66,7 +68,7 @@ ui <- semanticPage(
     tags$p(span(style="text-align:left; color:#FFFFFF;",
                 strong("Author: "),"Matt Malishev","|",
                 strong("Github: "),
-                span(style="color:#FF385C;",a(style="color:#FF385C;","@darwinanddavis",href="https://github.com/darwinanddavis/ships"))
+                span(style="color:#FF385C;",a(style="color:#0099F9;","@darwinanddavis",href="https://github.com/darwinanddavis/ships"))
     ))
   )
 )
@@ -120,11 +122,9 @@ server <- shinyServer(function(input, output, session) {
              LABEL="Destination")  
   })
   
-  output$origintext <- renderText(paste0(map_origin() %>% pull(DISTANCE),"m"))
-  output$desttext <- renderText(paste0(map_dest() %>% pull(DISTANCE),"m"))
-  
+  # get distance m
   output$distance <- renderText({
-    paste0((map_origin() %>% pull(DISTANCE)- map_dest() %>% pull(DISTANCE))  %>% abs," m")
+    paste0((map_origin() %>% pull(DISTANCE)- map_dest() %>% pull(DISTANCE))  %>% abs)
   })
   
   # labels ------------------------------------------------------------------
@@ -188,7 +188,7 @@ server <- shinyServer(function(input, output, session) {
                        options = providerTileOptions(minZoom=min_zoom, maxZoom=max_zoom)) %>%
       addCircles(data = map_origin(), 
                  lng = ~LON, lat = ~LAT,
-                 radius = 25,
+                 radius = 30,
                  color = ~COL,
                  fill = ~COL,
                  fillColor = ~COL,
@@ -199,7 +199,7 @@ server <- shinyServer(function(input, output, session) {
                  labelOptions = text_label_opt) %>%
       addCircles(data = map_dest(), 
                  lng = ~LON, lat = ~LAT,
-                 radius = 25,
+                 radius = 30,
                  color = ~COL,
                  fill = ~COL,
                  fillColor = ~COL,
