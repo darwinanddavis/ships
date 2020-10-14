@@ -18,7 +18,7 @@ File extensions:
 
 Shiny app for analysing maritime vessel GPS location and transportation/movement data     
 
-[Launch the Shiny app](https://darwinanddavis.shinyapps.io/ships/)    
+### [Launch the Shiny app](https://darwinanddavis.shinyapps.io/ships/)    
 
 ### Analysis  
 
