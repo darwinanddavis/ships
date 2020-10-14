@@ -1,9 +1,6 @@
 # Analysing shipping vessel locations 
 ## Appsilon Data   
 
-### Matthew Malishev<sup>1*</sup>
-##### *Corresponding author: matthew.malishev [at] gmail.com  
-
 Versions:  
  - R 3.5.0  
  - RStudio 1.1.453      
@@ -21,14 +18,13 @@ File extensions:
 
 Shiny app for analysing maritime vessel GPS location and transportation/movement data     
 
-[Shiny app](https://darwinanddavis.shinyapps.io/ships/)    
+[Launch the Shiny app](https://darwinanddavis.shinyapps.io/ships/)    
 
 ### Analysis  
 
-* User can select a vessel type   
-* User can select a vessel name   
-* Calculate the observation when it sailed the longest distance between two consecutive observations   
-
+* Users select a vessel type     
+* Users select a vessel name     
+* The app calculates the observations when the vessel sailed the longest distance between two consecutive time points     
 
 Data analysis    
 
