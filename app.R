@@ -98,10 +98,6 @@ server <- shinyServer(function(input, output, session) {
     ships %>% filter(SHIP_TYPE %in% input$select_type & SHIPNAME %in% input$select_name)
   })
   
-  output$data <- renderTable({
-    map_event() %>% head 
-  },rownames = T)
-  
   # distance
   map_distance <- reactive({
     map_event() %>% 
@@ -124,7 +120,7 @@ server <- shinyServer(function(input, output, session) {
   
   # get distance m
   output$distance <- renderText({
-    paste0((map_origin() %>% pull(DISTANCE)- map_dest() %>% pull(DISTANCE))  %>% abs)
+    paste0((map_origin() %>% pull(DISTANCE)- map_dest() %>% pull(DISTANCE)) %>% abs)
   })
   
   # labels ------------------------------------------------------------------

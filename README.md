@@ -24,13 +24,12 @@ Shiny app for analysing maritime vessel GPS location and transportation/movement
 
 * Users select a vessel type     
 * Users select a vessel name     
-* The app calculates the observations when the vessel sailed the longest distance between two consecutive time points     
-
+* The app calculates the observations when the vessel sailed the longest distance between two consecutive time points       
 Data analysis    
 
-Below is pseudocode describing some of the analysis. More detailed code is available in `app.R`.   
+Below is pseudocode describing some of the analysis. More detailed code is found in `app.R`.   
 
-Distance travelled was calculated using `speed` and `elapsed` variables.  
+Distance travelled was calculated using `speed` and `elapsed` variables. The original dataset has been truncated to the below variables to make it smaller in size.    
 
 ```
 ships %>%
@@ -51,7 +50,7 @@ ships %>% filter(SHIP_TYPE %in% input$select_type & SHIPNAME %in% input$select_n
 
 ```
 
-The origin and destination latlon points are then plotted on a world map. Locations, vessel info, and distance update as user selects new vessels.  
+These two consecutive latlon locations (origin and destination) are then plotted on a world map. Locations, vessel info, and distance update as user selects new vessels.    
 
 Full code available in `app.R`.      
 
